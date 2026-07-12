@@ -16,9 +16,3 @@ jobs:
         run: |
           source /opt/ros/humble/setup.bash
           colcon build
-
-          #      - name: Test
-          #        run: |
-          #          source /opt/ros/humble/setup.bash
-          #          colcon test
-          #          colcon test-result --verbose    
