@@ -5,8 +5,20 @@ jobs:
     runs-on: [self-hosted, ros2]
     steps:
       - uses: actions/checkout@v4
-      - name: Build & test
+
+      - name: Resolve dependencies
+        run: |
+          source /opt/ros/humble/setup.bash
+          rosdep update
+          rosdep install --from-paths . --ignore-src -y      
+
+      - name: Build
         run: |
           source /opt/ros/humble/setup.bash
           colcon build
-          colcon test && colcon test-result --verbose
+
+      - name: Test
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon test
+          colcon test-result --verbose    
